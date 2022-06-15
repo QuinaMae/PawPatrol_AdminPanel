@@ -143,6 +143,11 @@ public class Admin extends javax.swing.JFrame {
         jPanel2.add(jDateChooserOwnerBday, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 170, -1));
 
         jComboBoxOwnerGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male" }));
+        jComboBoxOwnerGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxOwnerGenderActionPerformed(evt);
+            }
+        });
         jPanel2.add(jComboBoxOwnerGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, -1));
 
         jLabelOwnerBday.setText("Birthday");
@@ -385,6 +390,10 @@ public class Admin extends javax.swing.JFrame {
         jComboBoxPetGender.setSelectedItem("");
         jDateChooserPetBday.setDateFormatString("");
     }//GEN-LAST:event_jButtonClearActionPerformed
+
+    private void jComboBoxOwnerGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOwnerGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxOwnerGenderActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,9 @@
  */
 package Admin;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Acer
@@ -43,15 +46,30 @@ public class Logs extends javax.swing.JFrame {
 
         appointmentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         appointmentsLabel.setText("Appointments");
+        appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appointmentsLabelMouseClicked(evt);
+            }
+        });
 
         shopServicesLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         shopServicesLabel.setText("Shop Services");
+        shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                shopServicesLabelMouseClicked(evt);
+            }
+        });
 
         activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         activityLogLabel.setText("Activity Log");
 
         logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logOut.setText("Log Out");
+        logOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logOutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,6 +159,31 @@ public class Logs extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void shopServicesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopServicesLabelMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        ShopServices shopServices = new ShopServices();
+        shopServices.setVisible(true);
+    }//GEN-LAST:event_shopServicesLabelMouseClicked
+
+    private void appointmentsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentsLabelMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        Dashboard dboard = new Dashboard();
+        dboard.setVisible(true);
+    }//GEN-LAST:event_appointmentsLabelMouseClicked
+
+    private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("Log Out");
+        if(JOptionPane.showConfirmDialog(frame, "Are you sure you want to log out?", "Admin Panel", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+        {
+            dispose();
+            Login login = new Login();
+            login.setVisible(true);
+        }
+    }//GEN-LAST:event_logOutMouseClicked
 
     /**
      * @param args the command line arguments
