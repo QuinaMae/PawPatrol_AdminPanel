@@ -135,8 +135,7 @@ public class Login extends javax.swing.JFrame {
             //open connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/teamhatdog","root", "");
-            
-            //u/n and pswd
+           
             String username = usernameInput.getText();
             String password = passwordInput.getText();
             

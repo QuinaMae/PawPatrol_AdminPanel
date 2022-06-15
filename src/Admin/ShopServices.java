@@ -6,18 +6,62 @@ package Admin;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Acer
+ * @author Quina Mae C. Charopang
  */
 public class ShopServices extends javax.swing.JFrame {
-
+    
+    private static final String username = "root";
+    private static final String password = "";
+    private static final String sqlPath = "jdbc:mysql://localhost/teamhatdog";
+    
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    int q, i, id, deleteItem;
     /**
      * Creates new form ShopServices
      */
     public ShopServices() {
         initComponents();
+    }
+    
+    /*
+    update DB
+    */
+    public void updateDB(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            ps = con.prepareStatement("select * from shop_services");
+            
+            rs = ps.executeQuery();
+            ResultSetMetaData rsData = rs.getMetaData();
+            
+            q = rsData.getColumnCount();
+            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+//            RecordTable.setRowCount(0);
+            
+            while (rs.next()){
+                Vector columnData = new Vector();
+                for (i=1; i <= q; i++){
+                    columnData.add(rs.getString("id"));
+                    columnData.add(rs.getString("title"));
+                    columnData.add(rs.getString("descrip"));
+                    columnData.add(rs.getString("price"));
+                }
+                RecordTable.addRow(columnData);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -41,7 +85,7 @@ public class ShopServices extends javax.swing.JFrame {
         priceLabel = new javax.swing.JLabel();
         priceInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         addBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
@@ -122,22 +166,48 @@ public class ShopServices extends javax.swing.JFrame {
 
         priceLabel.setText("Price");
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "id", "title", "descrip", "price"
             }
-        ));
-        jScrollPane1.setViewportView(table);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         addBtn.setText("ADD");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         updateBtn.setText("UPDATE");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         clearBtn.setText("CLEAR");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -185,19 +255,19 @@ public class ShopServices extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titleLabel)
-                    .addComponent(titleInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceLabel)
-                    .addComponent(priceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(titleLabel)
+                            .addComponent(titleInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(priceLabel)
+                            .addComponent(priceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addComponent(descriptionLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(73, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,6 +326,98 @@ public class ShopServices extends javax.swing.JFrame {
         aLog.setVisible(true);
     }//GEN-LAST:event_activityLogLabelMouseClicked
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            ps = con.prepareStatement("insert into shop_services(title, descrip, price)values(?,?,?)");
+            ps.setString(1, titleInput.getText());
+            ps.setString(2, descriptionInput.getText());
+            ps.setString(3, priceInput.getText());
+            
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Successfully Added");
+            updateDB();
+            
+        }catch(ClassNotFoundException | SQLException e){
+            java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        }
+        
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            ps = con.prepareStatement("update teamhatdog.shop_services set title=?, descrip=?, price=? where id=?");
+            ps.setString(1, titleInput.getText());
+            ps.setString(2, descriptionInput.getText());
+            ps.setString(3, priceInput.getText());
+            
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Successfully Updated");
+            updateDB();
+        }catch(ClassNotFoundException e){
+            java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        }catch(SQLException e){
+            java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            // TODO add your handling code here:
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            
+//            Statement st = con.createStatement();
+//            String sql = "select * from teamhatdog.shop_services";
+//            rs = st.executeQuery(sql);
+            
+            
+            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+            int SelectedRows = jTable1.getSelectedRow();
+            
+            titleInput.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
+            descriptionInput.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
+            priceInput.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+                try {
+            // TODO add your handling code here:
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            
+            Statement st = con.createStatement();
+            String sql = "select * from teamhatdog.shop_services";
+            rs = st.executeQuery(sql);
+            
+            
+//            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+//            int SelectedRows = jTable1.getSelectedRow();
+//            
+//            titleInput.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
+//            descriptionInput.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
+//            priceInput.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -302,11 +464,11 @@ public class ShopServices extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logOut;
     private javax.swing.JTextField priceInput;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel shopServicesLabel;
-    private javax.swing.JTable table;
     private javax.swing.JTextField titleInput;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton updateBtn;
