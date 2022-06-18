@@ -46,7 +46,7 @@ public class ShopServices extends javax.swing.JFrame {
             ResultSetMetaData rsData = rs.getMetaData();
             
             q = rsData.getColumnCount();
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+            DefaultTableModel RecordTable = (DefaultTableModel)servicesTable.getModel();
 //            RecordTable.setRowCount(0);
             
             while (rs.next()){
@@ -85,17 +85,19 @@ public class ShopServices extends javax.swing.JFrame {
         priceLabel = new javax.swing.JLabel();
         priceInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        servicesTable = new javax.swing.JTable();
         addBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         descriptionInput = new javax.swing.JTextArea();
+        refreshBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         appointmentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         appointmentsLabel.setText("Appointments");
@@ -104,6 +106,7 @@ public class ShopServices extends javax.swing.JFrame {
                 appointmentsLabelMouseClicked(evt);
             }
         });
+        jPanel3.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
         shopServicesLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         shopServicesLabel.setText("Shop Services");
@@ -112,6 +115,7 @@ public class ShopServices extends javax.swing.JFrame {
                 shopServicesLabelMouseClicked(evt);
             }
         });
+        jPanel3.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 56, -1, -1));
 
         activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         activityLogLabel.setText("Activity Log");
@@ -120,6 +124,7 @@ public class ShopServices extends javax.swing.JFrame {
                 activityLogLabelMouseClicked(evt);
             }
         });
+        jPanel3.add(activityLogLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 94, -1, -1));
 
         logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logOut.setText("Log Out");
@@ -128,72 +133,41 @@ public class ShopServices extends javax.swing.JFrame {
                 logOutMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appointmentsLabel)
-                    .addComponent(shopServicesLabel)
-                    .addComponent(activityLogLabel)
-                    .addComponent(logOut))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(appointmentsLabel)
-                .addGap(18, 18, 18)
-                .addComponent(shopServicesLabel)
-                .addGap(18, 18, 18)
-                .addComponent(activityLogLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logOut)
-                .addGap(17, 17, 17))
-        );
+        jPanel3.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 563, -1, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleLabel.setText("Title");
+        jPanel4.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 26, -1, -1));
+        jPanel4.add(titleInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 23, 247, -1));
 
         descriptionLabel.setText("Description");
+        jPanel4.add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 77, -1, -1));
 
         priceLabel.setText("Price");
+        jPanel4.add(priceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 26, 32, -1));
+        jPanel4.add(priceInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 23, 83, -1));
 
-        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPane1MouseClicked(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        servicesTable.setAutoCreateRowSorter(true);
+        servicesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "id", "title", "descrip", "price"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ));
+        servicesTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                servicesTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(servicesTable);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 211, 816, 371));
 
         addBtn.setText("ADD");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +175,7 @@ public class ShopServices extends javax.swing.JFrame {
                 addBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 171, -1, -1));
 
         updateBtn.setText("UPDATE");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +183,7 @@ public class ShopServices extends javax.swing.JFrame {
                 updateBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
         clearBtn.setText("CLEAR");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -215,70 +191,21 @@ public class ShopServices extends javax.swing.JFrame {
                 clearBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 171, -1, -1));
 
         descriptionInput.setColumns(20);
         descriptionInput.setRows(5);
         jScrollPane2.setViewportView(descriptionInput);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(titleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(titleInput, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(186, 186, 186)
-                        .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(priceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(descriptionLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(324, 324, 324)
-                        .addComponent(addBtn)
-                        .addGap(40, 40, 40)
-                        .addComponent(updateBtn)
-                        .addGap(40, 40, 40)
-                        .addComponent(clearBtn)))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(titleLabel)
-                            .addComponent(titleInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(priceLabel)
-                            .addComponent(priceInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(73, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addBtn)
-                        .addComponent(updateBtn))
-                    .addComponent(clearBtn))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 73, 640, -1));
+
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 171, -1, -1));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 600));
 
@@ -331,10 +258,11 @@ public class ShopServices extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("insert into shop_services(title, descrip, price)values(?,?,?)");
-            ps.setString(1, titleInput.getText());
-            ps.setString(2, descriptionInput.getText());
-            ps.setString(3, priceInput.getText());
+            ps = con.prepareStatement("INSERT INTO shop_services(title, descrip, price) VALUES(?,?,?)");
+            ps.setString(1, titleInput.getText()); //title
+            ps.setString(2, descriptionInput.getText()); //descrip
+            ps.setInt(3, Integer.valueOf(priceInput.getText())); //price
+//            ps.setString(3, priceInput.getText()); //price
             
             ps.executeUpdate();
             JOptionPane.showMessageDialog(this, "Successfully Added");
@@ -351,7 +279,7 @@ public class ShopServices extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("update teamhatdog.shop_services set title=?, descrip=?, price=? where id=?");
+            ps = con.prepareStatement("UPDATE shop_services SET title=?, descrip=?, price=? WHERE id=?");
             ps.setString(1, titleInput.getText());
             ps.setString(2, descriptionInput.getText());
             ps.setString(3, priceInput.getText());
@@ -366,57 +294,42 @@ public class ShopServices extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        try {
+    private void servicesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_servicesTableMouseClicked
             // TODO add your handling code here:
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        try{
             con = DriverManager.getConnection(sqlPath, username, password);
+            ps = con.prepareStatement("SELECT * FROM shop_services");
+            rs = ps.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel)servicesTable.getModel();
+            tm.setRowCount(0);
             
-//            Statement st = con.createStatement();
-//            String sql = "select * from teamhatdog.shop_services";
-//            rs = st.executeQuery(sql);
-            
-            
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-            int SelectedRows = jTable1.getSelectedRow();
-            
-            titleInput.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
-            descriptionInput.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
-            priceInput.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
-            
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
-        }       
-    }//GEN-LAST:event_jTable1MouseClicked
+            while(rs.next()){
+                Object o[] = {rs.getInt("id"), rs.getString("title"), rs.getString("descrip"), rs.getInt("price")};
+                tm.addRow(o);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }    
+    }//GEN-LAST:event_servicesTableMouseClicked
 
-    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         // TODO add your handling code here:
-                try {
-            // TODO add your handling code here:
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(sqlPath, username, password);
-            
-            Statement st = con.createStatement();
-            String sql = "select * from teamhatdog.shop_services";
-            rs = st.executeQuery(sql);
-            
-            
-//            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-//            int SelectedRows = jTable1.getSelectedRow();
+//        try{
+//            con = DriverManager.getConnection(sqlPath, username, password);
+//            ps = con.prepareStatement("SELECT * FROM shop_services");
+//            rs = ps.executeQuery();
+//            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
+//            tm.setRowCount(0);
 //            
-//            titleInput.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
-//            descriptionInput.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
-//            priceInput.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ShopServices.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+//            while(rs.next()){
+//                Object o[] = {rs.getInt("id"), rs.getString("title"), rs.getString("descrip"), rs.getInt("price")};
+//                tm.addRow(o);
+//            }
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(this, e);
+//        }
         
-    }//GEN-LAST:event_jScrollPane1MouseClicked
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -464,10 +377,11 @@ public class ShopServices extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logOut;
     private javax.swing.JTextField priceInput;
     private javax.swing.JLabel priceLabel;
+    private javax.swing.JButton refreshBtn;
+    private javax.swing.JTable servicesTable;
     private javax.swing.JLabel shopServicesLabel;
     private javax.swing.JTextField titleInput;
     private javax.swing.JLabel titleLabel;
