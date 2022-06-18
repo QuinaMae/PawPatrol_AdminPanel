@@ -60,7 +60,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         activitLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activitLogLabel.setText("Activity Log");
+        activitLogLabel.setText("Payments");
         activitLogLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 activitLogLabelMouseClicked(evt);
@@ -84,8 +84,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(appointmentsLabel)
                     .addComponent(shopServicesLabel)
-                    .addComponent(activitLogLabel)
-                    .addComponent(logOut))
+                    .addComponent(logOut)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(activitLogLabel)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
