@@ -123,7 +123,7 @@ public class ShopServices extends javax.swing.JFrame {
         jPanel3.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 56, -1, -1));
 
         activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel.setText("Activity Log");
+        activityLogLabel.setText("Payments");
         activityLogLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 activityLogLabelMouseClicked(evt);
