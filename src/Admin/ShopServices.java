@@ -4,6 +4,7 @@
  */
 package Admin;
 
+import java.awt.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.*;
@@ -25,12 +26,14 @@ public class ShopServices extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    
     int q, i, id, deleteItem;
     /**
      * Creates new form ShopServices
      */
     public ShopServices() {
         initComponents();
+        updateDB();
     }
     
     /*
@@ -47,7 +50,7 @@ public class ShopServices extends javax.swing.JFrame {
             
             q = rsData.getColumnCount();
             DefaultTableModel RecordTable = (DefaultTableModel)servicesTable.getModel();
-//            RecordTable.setRowCount(0);
+            RecordTable.setRowCount(0);
             
             while (rs.next()){
                 Vector columnData = new Vector();
@@ -92,6 +95,8 @@ public class ShopServices extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         descriptionInput = new javax.swing.JTextArea();
         refreshBtn = new javax.swing.JButton();
+        serviceID = new javax.swing.JLabel();
+        serviceIDtxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,14 +140,14 @@ public class ShopServices extends javax.swing.JFrame {
         });
         jPanel3.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 563, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 600));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleLabel.setText("Title");
-        jPanel4.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 26, -1, -1));
-        jPanel4.add(titleInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 23, 247, -1));
+        jPanel4.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+        jPanel4.add(titleInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 247, -1));
 
         descriptionLabel.setText("Description");
         jPanel4.add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 77, -1, -1));
@@ -175,7 +180,7 @@ public class ShopServices extends javax.swing.JFrame {
                 addBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 171, -1, -1));
+        jPanel4.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
         updateBtn.setText("UPDATE");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +188,7 @@ public class ShopServices extends javax.swing.JFrame {
                 updateBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
+        jPanel4.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
 
         clearBtn.setText("CLEAR");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +212,12 @@ public class ShopServices extends javax.swing.JFrame {
         });
         jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 171, -1, -1));
 
+        serviceID.setText("ID");
+        jPanel4.add(serviceID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        serviceIDtxt.setEditable(false);
+        jPanel4.add(serviceIDtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 70, -1));
+
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 600));
 
         pack();
@@ -215,6 +226,8 @@ public class ShopServices extends javax.swing.JFrame {
 
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         // TODO add your handling code here:
+       
+        serviceIDtxt.setText("");
         titleInput.setText("");
         descriptionInput.setText("");
         priceInput.setText("");
@@ -255,47 +268,69 @@ public class ShopServices extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("INSERT INTO shop_services(title, descrip, price) VALUES(?,?,?)");
-            ps.setString(1, titleInput.getText()); //title
-            ps.setString(2, descriptionInput.getText()); //descrip
-            ps.setInt(3, Integer.valueOf(priceInput.getText())); //price
-//            ps.setString(3, priceInput.getText()); //price
-            
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Successfully Added");
-            updateDB();
-            
-        }catch(ClassNotFoundException | SQLException e){
-            java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        if (titleInput.getText().isEmpty() | descriptionInput.getText().isEmpty() | priceInput.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Missing Component!");
+        } else {
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(sqlPath, username, password);
+                ps = con.prepareStatement("INSERT INTO shop_services(title, descrip, price) VALUES(?,?,?)");
+                ps.setString(1, titleInput.getText()); //title
+                ps.setString(2, descriptionInput.getText()); //descrip
+                ps.setInt(3, Integer.valueOf(priceInput.getText())); //price
+
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Successfully Added");
+                con.close();
+                updateDB();
+
+            }catch(ClassNotFoundException | SQLException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }
         }
         
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("UPDATE shop_services SET title=?, descrip=?, price=? WHERE id=?");
-            ps.setString(1, titleInput.getText());
-            ps.setString(2, descriptionInput.getText());
-            ps.setString(3, priceInput.getText());
-            
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Successfully Updated");
-            updateDB();
-        }catch(ClassNotFoundException e){
-            java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
-        }catch(SQLException e){
-            java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        if (titleInput.getText().isEmpty() | descriptionInput.getText().isEmpty() | priceInput.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Missing Component!");
+        } else {
+             try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(sqlPath, username, password);
+//                ps = con.prepareStatement("UPDATE shop_services SET title = '"+titleInput.getText()+"'?, descrip = ?, price = ? WHERE id = ? ");
+//                ps.setString(1, titleInput.getText());
+//                ps.setString(2, descriptionInput.getText());
+//                ps.setString(3, priceInput.getText());
+                ps = con.prepareStatement("UPDATE shop_services SET title = '"+titleInput.getText()+"', descrip = '"+descriptionInput.getText()+"', price = '"+priceInput.getText()+"' WHERE id = '"+serviceIDtxt.getText()+"' ");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Successfully Updated");
+                con.close();
+                updateDB();
+
+            }catch(ClassNotFoundException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }catch(SQLException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }
         }
+
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void servicesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_servicesTableMouseClicked
-            // TODO add your handling code here:
+            // TODO add your handling code here: 
+
+        DefaultTableModel tm = (DefaultTableModel)servicesTable.getModel();
+        i = servicesTable.getSelectedRow();
+        serviceIDtxt.setText(tm.getValueAt(i, 0).toString());
+        titleInput.setText(tm.getValueAt(i, 1).toString());
+        descriptionInput.setText(tm.getValueAt(i, 2).toString());
+        priceInput.setText(tm.getValueAt(i, 3).toString());
+    }//GEN-LAST:event_servicesTableMouseClicked
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
         try{
             con = DriverManager.getConnection(sqlPath, username, password);
             ps = con.prepareStatement("SELECT * FROM shop_services");
@@ -309,25 +344,7 @@ public class ShopServices extends javax.swing.JFrame {
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e);
-        }    
-    }//GEN-LAST:event_servicesTableMouseClicked
-
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        // TODO add your handling code here:
-//        try{
-//            con = DriverManager.getConnection(sqlPath, username, password);
-//            ps = con.prepareStatement("SELECT * FROM shop_services");
-//            rs = ps.executeQuery();
-//            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
-//            tm.setRowCount(0);
-//            
-//            while(rs.next()){
-//                Object o[] = {rs.getInt("id"), rs.getString("title"), rs.getString("descrip"), rs.getInt("price")};
-//                tm.addRow(o);
-//            }
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(this, e);
-//        }
+        }
         
     }//GEN-LAST:event_refreshBtnActionPerformed
 
@@ -381,6 +398,8 @@ public class ShopServices extends javax.swing.JFrame {
     private javax.swing.JTextField priceInput;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JButton refreshBtn;
+    private javax.swing.JLabel serviceID;
+    private javax.swing.JTextField serviceIDtxt;
     private javax.swing.JTable servicesTable;
     private javax.swing.JLabel shopServicesLabel;
     private javax.swing.JTextField titleInput;
