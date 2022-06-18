@@ -61,7 +61,7 @@ public class Logs extends javax.swing.JFrame {
         });
 
         activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel.setText("Activity Log");
+        activityLogLabel.setText("Payments");
 
         logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logOut.setText("Log Out");
