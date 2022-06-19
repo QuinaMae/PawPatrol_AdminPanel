@@ -5,6 +5,8 @@
 package Admin;
 
 import java.beans.Statement;
+import java.io.File;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,7 +50,7 @@ public class Payments extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         paymentsTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        exportBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         paymentID = new javax.swing.JLabel();
         idInput = new javax.swing.JTextField();
@@ -145,8 +147,13 @@ public class Payments extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 201, 879, 410));
 
-        jButton1.setText("Export ");
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 36, -1, -1));
+        exportBtn.setText("Export ");
+        exportBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportBtnMouseClicked(evt);
+            }
+        });
+        jPanel3.add(exportBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(821, 36, -1, -1));
 
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +321,58 @@ public class Payments extends javax.swing.JFrame {
         statusInput.setSelectedItem(tm.getValueAt(i, 5).toString());
     }//GEN-LAST:event_paymentsTableMouseClicked
 
+    private void exportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportBtnMouseClicked
+        // TODO add your handling code here:
+        
+        try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection(sqlPath, username, password);
+        
+        PrintWriter pw = new PrintWriter (new File("C:\\Payment_Table.csv"));
+        StringBuilder sb = new StringBuilder();
+        
+        String query = "SELECT * from payment";
+        ResultSet rs = null;
+        rs = ps.executeQuery();
+       
+        sb.append("id");
+        sb.append(",");
+        sb.append("appointment_id");
+        sb.append(",");
+        sb.append("pay date");
+        sb.append(",");
+        sb.append("user id");
+        sb.append(",");
+        sb.append("amount");
+        sb.append(",");
+        sb.append("status");
+        
+        while (rs.next()){
+           sb.append(rs.getString("id"));
+           sb.append(",");
+           sb.append("app_id");
+           sb.append(",");
+           sb.append("pay_date");
+           sb.append(",");
+           sb.append("amount");
+           sb.append(",");
+           sb.append("user_id");
+           sb.append(",");
+           sb.append("status");
+           sb.append("\r\n");
+        }
+        
+        pw.write(sb.toString());
+        pw.close();
+        
+        
+        } catch (Exception e){
+             e.printStackTrace();
+        }
+        
+        JOptionPane.showMessageDialog(this, "Successfully Exported");
+    }//GEN-LAST:event_exportBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -357,8 +416,8 @@ public class Payments extends javax.swing.JFrame {
     private javax.swing.JLabel appID;
     private javax.swing.JTextField appidInput;
     private javax.swing.JLabel appointmentsLabel;
+    private javax.swing.JButton exportBtn;
     private javax.swing.JTextField idInput;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
