@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Acer
+ * @author Calingangan, Sean Carlo R.
  */
 public class Dashboard extends javax.swing.JFrame {
 
@@ -86,6 +86,7 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         appointmentLog = new javax.swing.JTable();
         refreshButton = new javax.swing.JButton();
+        showIdTextBox = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,15 +167,20 @@ public class Dashboard extends javax.swing.JFrame {
 
         appointmentLog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "app_id", "user_id", "date_booked", "date_updated", "status"
             }
         ));
+        appointmentLog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                appointmentLogMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(appointmentLog);
 
         refreshButton.setText("Refresh");
@@ -202,13 +208,19 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshButton)
-                        .addGap(29, 29, 29))))
+                        .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(16, 16, 16)
+                .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptBtn)
                     .addComponent(declineBtn)
@@ -279,6 +291,12 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
 
+    private void appointmentLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentLogMouseClicked
+         DefaultTableModel tm = (DefaultTableModel)appointmentLog.getModel();
+        i = appointmentLog.getSelectedRow();
+        showIdTextBox.setText(tm.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_appointmentLogMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -325,5 +343,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel logOut;
     private javax.swing.JButton refreshButton;
     private javax.swing.JLabel shopServicesLabel;
+    private javax.swing.JTextField showIdTextBox;
     // End of variables declaration//GEN-END:variables
 }
