@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -235,11 +236,45 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
-        // TODO add your handling code here:
+        if (showIdTextBox.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Missing Component!");
+        } else {
+             try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(sqlPath, username, password);
+                ps = con.prepareStatement("UPDATE appointment_log SET status = 'accepted'");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Successfully Updated");
+                con.close();
+                updateDB();
+
+            }catch(ClassNotFoundException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }catch(SQLException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }
+        }
     }//GEN-LAST:event_acceptBtnActionPerformed
 
     private void declineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineBtnActionPerformed
-        // TODO add your handling code here:
+        if (showIdTextBox.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Missing Component!");
+        } else {
+             try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(sqlPath, username, password);
+                ps = con.prepareStatement("UPDATE appointment_log SET status = 'declined'");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Successfully Updated");
+                con.close();
+                updateDB();
+
+            }catch(ClassNotFoundException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }catch(SQLException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }
+        }
     }//GEN-LAST:event_declineBtnActionPerformed
 
     private void shopServicesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopServicesLabelMouseClicked
