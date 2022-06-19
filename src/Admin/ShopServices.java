@@ -262,7 +262,7 @@ public class ShopServices extends javax.swing.JFrame {
     private void activityLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabelMouseClicked
         // TODO add your handling code here:
         dispose();
-        Logs aLog = new Logs();
+        Payments aLog = new Payments();
         aLog.setVisible(true);
     }//GEN-LAST:event_activityLogLabelMouseClicked
 

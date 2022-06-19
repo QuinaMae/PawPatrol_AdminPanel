@@ -85,9 +85,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(appointmentsLabel)
                     .addComponent(shopServicesLabel)
                     .addComponent(logOut)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(activitLogLabel)))
+                    .addComponent(activitLogLabel))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,7 +188,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void activitLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activitLogLabelMouseClicked
         // TODO add your handling code here:
         dispose();
-        Logs aLog = new Logs();
+        Payments aLog = new Payments();
         aLog.setVisible(true);
     }//GEN-LAST:event_activitLogLabelMouseClicked
 
