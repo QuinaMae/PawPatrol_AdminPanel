@@ -4,8 +4,15 @@
  */
 package Admin;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,11 +20,51 @@ import javax.swing.JOptionPane;
  */
 public class Dashboard extends javax.swing.JFrame {
 
+    private static final String username = "root";
+    private static final String password = "";
+    private static final String sqlPath = "jdbc:mysql://localhost/teamhatdog";
+    
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    
+    int q, i, id, deleteItem;
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
+        updateDB();
+    }
+    
+    public void updateDB(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            ps = con.prepareStatement("select * from appointment_log");
+            
+            rs = ps.executeQuery();
+            ResultSetMetaData rsData = rs.getMetaData();
+            
+            q = rsData.getColumnCount();
+            DefaultTableModel RecordTable = (DefaultTableModel)appointmentLog.getModel();
+            RecordTable.setRowCount(0);
+            
+            while (rs.next()){
+                Vector columnData = new Vector();
+                for (i=1; i <= q; i++){
+                    columnData.add(rs.getString("id"));
+                    columnData.add(rs.getString("app_id"));
+                    columnData.add(rs.getString("user_id"));
+                    columnData.add(rs.getString("date_booked"));
+                    columnData.add(rs.getString("date_updated"));
+                    columnData.add(rs.getString("status"));
+                }
+                RecordTable.addRow(columnData);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -37,7 +84,8 @@ public class Dashboard extends javax.swing.JFrame {
         acceptBtn = new javax.swing.JButton();
         declineBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+        appointmentLog = new javax.swing.JTable();
+        refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,7 +164,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
+        appointmentLog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -127,7 +175,14 @@ public class Dashboard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(table);
+        jScrollPane1.setViewportView(appointmentLog);
+
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,14 +192,17 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(234, 234, 234)
                         .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 20, Short.MAX_VALUE))
+                        .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(refreshButton)
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +211,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptBtn)
-                    .addComponent(declineBtn))
+                    .addComponent(declineBtn)
+                    .addComponent(refreshButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
@@ -203,6 +262,23 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOutMouseClicked
 
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        try{
+            con = DriverManager.getConnection(sqlPath, username, password);
+            ps = con.prepareStatement("SELECT * FROM appointment_log");
+            rs = ps.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel)appointmentLog.getModel();
+            tm.setRowCount(0);
+            
+            while(rs.next()){
+                Object o[] = {rs.getInt("id"), rs.getString("app_id"), rs.getString("user_id"), rs.getInt("date_booked"), rs.getInt("date_updated"), rs.getInt("status")};
+                tm.addRow(o);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,12 +317,13 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptBtn;
     private javax.swing.JLabel activitLogLabel;
+    private javax.swing.JTable appointmentLog;
     private javax.swing.JLabel appointmentsLabel;
     private javax.swing.JButton declineBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logOut;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JLabel shopServicesLabel;
-    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
