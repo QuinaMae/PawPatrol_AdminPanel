@@ -4,6 +4,7 @@
  */
 package Admin;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -283,11 +284,12 @@ public class Payments extends javax.swing.JFrame {
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
-                ps = con.prepareStatement("UPDATE payment SET pay_date = '"+ paydateInput.getText()+"', amount = '"+ amountInput.getText()+"', status = '"+statusInput.getSelectedItem()+"' WHERE id = '"+paymentID.getText()+"' ");
-                ps.executeUpdate();
+                ps = con.prepareStatement("UPDATE payment SET status = '"+statusInput.getSelectedItem().toString()+"' WHERE id = "+idInput.getText()+" ");
+                ps.executeUpdate();              
                 JOptionPane.showMessageDialog(this, "Successfully Updated");
                 con.close();
                 updateDB();
+
 
             }catch(ClassNotFoundException e){
                 java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
