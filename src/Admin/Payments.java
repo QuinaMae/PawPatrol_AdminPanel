@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -48,17 +49,17 @@ public class Payments extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        idInput = new javax.swing.JTextField();
+        appidInput = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        amountInput = new javax.swing.JTextField();
+        paydateInput = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        useridInput = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        statusInput = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +134,11 @@ public class Payments extends javax.swing.JFrame {
                 "id", "app_id", "pay_date", "amount", "user_id", "status"
             }
         ));
+        paymentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(paymentsTable);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 201, 879, 410));
@@ -151,16 +157,16 @@ public class Payments extends javax.swing.JFrame {
         jLabel1.setText("ID");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        idInput.setEditable(false);
+        idInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                idInputActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 70, 100, -1));
+        jPanel3.add(idInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 70, 100, -1));
 
-        jTextField2.setEditable(false);
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 103, -1));
+        appidInput.setEditable(false);
+        jPanel3.add(appidInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 103, -1));
 
         jLabel2.setText("Appointment ID");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
@@ -168,11 +174,11 @@ public class Payments extends javax.swing.JFrame {
         jLabel3.setText("Amount");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 71, -1, -1));
 
-        jTextField3.setEditable(false);
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 68, 103, -1));
+        amountInput.setEditable(false);
+        jPanel3.add(amountInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 68, 103, -1));
 
-        jTextField4.setEditable(false);
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 120, -1));
+        paydateInput.setEditable(false);
+        jPanel3.add(paydateInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 120, -1));
 
         jLabel4.setText("Pay Date");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
@@ -180,14 +186,14 @@ public class Payments extends javax.swing.JFrame {
         jLabel5.setText("User ID");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
-        jTextField5.setEditable(false);
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 103, -1));
+        useridInput.setEditable(false);
+        jPanel3.add(useridInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 103, -1));
 
         jLabel6.setText("Status");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pending", "paid", "cancelled" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, -1));
+        statusInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pending", "paid", "cancelled" }));
+        jPanel3.add(statusInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,7 +227,7 @@ public class Payments extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("select * from shop_services");
+            ps = con.prepareStatement("SELECT * FROM payment");
             
             rs = ps.executeQuery();
             ResultSetMetaData rsData = rs.getMetaData();
@@ -234,9 +240,11 @@ public class Payments extends javax.swing.JFrame {
                 Vector columnData = new Vector();
                 for (i=1; i <= q; i++){
                     columnData.add(rs.getString("id"));
-                    columnData.add(rs.getString("title"));
-                    columnData.add(rs.getString("descrip"));
-                    columnData.add(rs.getString("price"));
+                    columnData.add(rs.getString("app_id"));
+                    columnData.add(rs.getString("pay_date"));
+                    columnData.add(rs.getString("amount"));
+                    columnData.add(rs.getString("user_id"));
+                    columnData.add(rs.getString("status"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -271,11 +279,38 @@ public class Payments extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+             try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(sqlPath, username, password);
+                ps = con.prepareStatement("UPDATE payment SET pay_date = '"+ paydateInput.getText()+"', descrip = '"+descriptionInput.getText()+"', price = '"+priceInput.getText()+"' WHERE id = '"+serviceIDtxt.getText()+"' ");
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Successfully Updated");
+                con.close();
+                updateDB();
+
+            }catch(ClassNotFoundException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }catch(SQLException e){
+                java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+            }
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void idInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_idInputActionPerformed
+
+    private void paymentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tm = (DefaultTableModel)paymentsTable.getModel();
+        i = paymentsTable.getSelectedRow();
+        idInput.setText(tm.getValueAt(i, 0).toString());
+        appidInput.setText(tm.getValueAt(i, 1).toString());
+        paydateInput.setText(tm.getValueAt(i, 2).toString());
+        amountInput.setText(tm.getValueAt(i, 3).toString());
+        useridInput.setText(tm.getValueAt(i, 4).toString());
+        statusInput.setSelectedItem(tm.getValueAt(i, 5).toString());
+    }//GEN-LAST:event_paymentsTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -315,9 +350,11 @@ public class Payments extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityLogLabel;
+    private javax.swing.JTextField amountInput;
+    private javax.swing.JTextField appidInput;
     private javax.swing.JLabel appointmentsLabel;
+    private javax.swing.JTextField idInput;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -328,14 +365,12 @@ public class Payments extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel logOut;
+    private javax.swing.JTextField paydateInput;
     private javax.swing.JTable paymentsTable;
     private javax.swing.JButton saveBtn;
     private javax.swing.JLabel shopServicesLabel;
+    private javax.swing.JComboBox<String> statusInput;
+    private javax.swing.JTextField useridInput;
     // End of variables declaration//GEN-END:variables
 }
