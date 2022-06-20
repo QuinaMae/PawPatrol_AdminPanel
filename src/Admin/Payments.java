@@ -328,7 +328,7 @@ public class Payments extends javax.swing.JFrame {
         Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(sqlPath, username, password);
         
-        PrintWriter pw = new PrintWriter (new File("C:/csv/Payment_Table.txt"));
+        PrintWriter pw = new PrintWriter (new File("C:/csv/Payment_Table.csv"));
         StringBuilder sb = new StringBuilder();
         
         String query = "SELECT * from payment";
@@ -340,7 +340,7 @@ public class Payments extends javax.swing.JFrame {
            sb.append(",");
            sb.append(rs.getString("app_id"));
            sb.append(",");
-           sb.append(rs.getString("pay_date"));
+           sb.append(rs.getDate("pay_date")); //changed getString to getDate
            sb.append(",");
            sb.append(rs.getString("amount"));
            sb.append(",");
