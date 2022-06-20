@@ -328,37 +328,25 @@ public class Payments extends javax.swing.JFrame {
         Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(sqlPath, username, password);
         
-        PrintWriter pw = new PrintWriter (new File("C:\\Payment_Table.csv"));
+        PrintWriter pw = new PrintWriter (new File("C:/csv/Payment_Table.txt"));
         StringBuilder sb = new StringBuilder();
         
         String query = "SELECT * from payment";
         ResultSet rs = null;
         rs = ps.executeQuery();
-       
-        sb.append("id");
-        sb.append(",");
-        sb.append("appointment_id");
-        sb.append(",");
-        sb.append("pay date");
-        sb.append(",");
-        sb.append("user id");
-        sb.append(",");
-        sb.append("amount");
-        sb.append(",");
-        sb.append("status");
         
         while (rs.next()){
            sb.append(rs.getString("id"));
            sb.append(",");
-           sb.append("app_id");
+           sb.append(rs.getString("app_id"));
            sb.append(",");
-           sb.append("pay_date");
+           sb.append(rs.getString("pay_date"));
            sb.append(",");
-           sb.append("amount");
+           sb.append(rs.getString("amount"));
            sb.append(",");
-           sb.append("user_id");
+           sb.append(rs.getString("user_id"));
            sb.append(",");
-           sb.append("status");
+           sb.append(rs.getString("status"));
            sb.append("\r\n");
         }
         
