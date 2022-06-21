@@ -9,7 +9,6 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Quina Mae C. Charopang
  */
 public class Login extends javax.swing.JFrame {
@@ -50,12 +49,6 @@ public class Login extends javax.swing.JFrame {
 
         loginLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         loginLabel.setText("LOG IN");
-
-        usernameInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameInputActionPerformed(evt);
-            }
-        });
 
         usernameLabel.setText("username");
 
@@ -121,14 +114,12 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void usernameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameInputActionPerformed
-
+/**
+ * This method build a connection to the database to validate user login information.
+ * @param evt 
+ */
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-        
+     
         try {
             //open connection
             Class.forName("com.mysql.cj.jdbc.Driver");

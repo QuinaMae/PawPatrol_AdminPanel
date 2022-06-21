@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
  * @author Calingangan, Sean Carlo R.
  */
 public class Dashboard extends javax.swing.JFrame {
@@ -30,14 +29,20 @@ public class Dashboard extends javax.swing.JFrame {
     ResultSet rs = null;
     
     int q, i, id, deleteItem;
+    
     /**
-     * Creates new form Dashboard
+     * This method calls the updateDB() method to automatically execute the prepared statement upon opening the Dashboard. 
+     * The initComponents() are a compilation of the swing fields or components used in the design.
      */
     public Dashboard() {
         initComponents();
         updateDB();
     }
     
+    /**
+     * This method creates a connection towards the database specified in the parameters and executes a query prepared 
+     * by a statement.
+    */
     public void updateDB(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -88,6 +93,7 @@ public class Dashboard extends javax.swing.JFrame {
         appointmentLog = new javax.swing.JTable();
         refreshButton = new javax.swing.JButton();
         showIdTextBox = new javax.swing.JTextField();
+        IDLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,7 +153,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(shopServicesLabel)
                 .addGap(18, 18, 18)
                 .addComponent(activitLogLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 449, Short.MAX_VALUE)
                 .addComponent(logOut)
                 .addGap(17, 17, 17))
         );
@@ -191,6 +197,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        IDLabel.setText("Appointment ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,20 +207,23 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 20, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(234, 234, 234)
                         .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                         .addComponent(refreshButton)
                         .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(297, 297, 297)
+                                .addComponent(IDLabel)
+                                .addGap(27, 27, 27)
+                                .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -220,15 +231,17 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IDLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptBtn)
                     .addComponent(declineBtn)
                     .addComponent(refreshButton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,6 +269,10 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_acceptBtnActionPerformed
 
+    /**
+     * This method functions by setting or updating the initial status to a declined status from the selected table record.
+     * @param evt 
+     */
     private void declineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineBtnActionPerformed
         if (showIdTextBox.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Missing Component!");
@@ -278,28 +295,24 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_declineBtnActionPerformed
 
     private void shopServicesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopServicesLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         ShopServices shopServices = new ShopServices();
         shopServices.setVisible(true);
     }//GEN-LAST:event_shopServicesLabelMouseClicked
-
+    
     private void appointmentsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentsLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         Dashboard dboard = new Dashboard();
         dboard.setVisible(true);
     }//GEN-LAST:event_appointmentsLabelMouseClicked
 
     private void activitLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activitLogLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         Payments aLog = new Payments();
         aLog.setVisible(true);
     }//GEN-LAST:event_activitLogLabelMouseClicked
 
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
-        // TODO add your handling code here:
         JFrame frame = new JFrame("Log Out");
         if(JOptionPane.showConfirmDialog(frame, "Are you sure you want to log out?", "Admin Panel", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
         {
@@ -309,6 +322,9 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOutMouseClicked
 
+    /**
+     * This method performs a prepared statement to fetch the latest records from a specific table given the schema.
+     */
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         try{
             con = DriverManager.getConnection(sqlPath, username, password);
@@ -368,6 +384,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IDLabel;
     private javax.swing.JButton acceptBtn;
     private javax.swing.JLabel activitLogLabel;
     private javax.swing.JTable appointmentLog;

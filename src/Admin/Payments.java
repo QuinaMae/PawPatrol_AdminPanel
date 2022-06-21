@@ -232,6 +232,9 @@ public class Payments extends javax.swing.JFrame {
     
     int q, i, id, deleteItem;
     
+    /**
+     * This method builds a connection to the database and executes a prepared statement or SQL query.
+     */
     public void updatepaymentDB(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -262,21 +265,18 @@ public class Payments extends javax.swing.JFrame {
         }
     }
     private void shopServicesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopServicesLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         ShopServices shopServices = new ShopServices();
         shopServices.setVisible(true);
     }//GEN-LAST:event_shopServicesLabelMouseClicked
 
     private void appointmentsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentsLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         Dashboard dboard = new Dashboard();
         dboard.setVisible(true);
     }//GEN-LAST:event_appointmentsLabelMouseClicked
 
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
-        // TODO add your handling code here:
         JFrame frame = new JFrame("Log Out");
         if(JOptionPane.showConfirmDialog(frame, "Are you sure you want to log out?", "Admin Panel", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
         {
@@ -286,8 +286,10 @@ public class Payments extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOutMouseClicked
 
+    /**
+     * This method updates the modification made and reflects it to the database.
+    */
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
@@ -309,6 +311,10 @@ public class Payments extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idInputActionPerformed
 
+    /**
+     * This method allows user to select a specific row in the table and displays it on its assigned text fields.
+     * @param evt 
+     */
     private void paymentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsTableMouseClicked
         // TODO add your handling code here:
         DefaultTableModel tm = (DefaultTableModel)paymentsTable.getModel();
@@ -321,9 +327,12 @@ public class Payments extends javax.swing.JFrame {
         statusInput.setSelectedItem(tm.getValueAt(i, 5).toString());
     }//GEN-LAST:event_paymentsTableMouseClicked
 
+    /**
+     * This method allows user to export the table record in a CSV file format.
+     * @param evt 
+     */
     private void exportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportBtnMouseClicked
-        // TODO add your handling code here:
-        
+      
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(sqlPath, username, password);

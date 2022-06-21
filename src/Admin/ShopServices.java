@@ -36,8 +36,9 @@ public class ShopServices extends javax.swing.JFrame {
         updateDB();
     }
     
-    /*
-    update DB
+    /**
+     * This method creates a connection towards the database specified in the parameters and executes a query prepared 
+     * by a statement.
     */
     public void updateDB(){
         try{
@@ -224,6 +225,10 @@ public class ShopServices extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method resets the existing inputs in the text fields.
+     * @param evt 
+     */
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         // TODO add your handling code here:
        
@@ -234,8 +239,6 @@ public class ShopServices extends javax.swing.JFrame {
     }//GEN-LAST:event_clearBtnActionPerformed
     private JFrame frame;
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
-        // TODO add your handling code here:
-        
         frame = new JFrame("Log Out");
         if(JOptionPane.showConfirmDialog(frame, "Are you sure you want to log out?", "Admin Panel", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
         {
@@ -246,28 +249,27 @@ public class ShopServices extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutMouseClicked
 
     private void appointmentsLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentsLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         Dashboard dboard = new Dashboard();
         dboard.setVisible(true);
     }//GEN-LAST:event_appointmentsLabelMouseClicked
 
     private void shopServicesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopServicesLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         ShopServices shopServices = new ShopServices();
         shopServices.setVisible(true);
     }//GEN-LAST:event_shopServicesLabelMouseClicked
 
     private void activityLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabelMouseClicked
-        // TODO add your handling code here:
         dispose();
         Payments aLog = new Payments();
         aLog.setVisible(true);
     }//GEN-LAST:event_activityLogLabelMouseClicked
-
+    
+    /**
+     * This method performs an insert query towards a specified table.
+    */
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
         if (titleInput.getText().isEmpty() | descriptionInput.getText().isEmpty() | priceInput.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Missing Component!");
         } else {
@@ -290,19 +292,17 @@ public class ShopServices extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addBtnActionPerformed
-
+    /**
+     * This method updates and saves an edit or modifications made from an existing record.
+     * @param evt 
+     */
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
         if (titleInput.getText().isEmpty() | descriptionInput.getText().isEmpty() | priceInput.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Missing Component!");
         } else {
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
-//                ps = con.prepareStatement("UPDATE shop_services SET title = '"+titleInput.getText()+"'?, descrip = ?, price = ? WHERE id = ? ");
-//                ps.setString(1, titleInput.getText());
-//                ps.setString(2, descriptionInput.getText());
-//                ps.setString(3, priceInput.getText());
                 ps = con.prepareStatement("UPDATE shop_services SET title = '"+titleInput.getText()+"', descrip = '"+descriptionInput.getText()+"', price = '"+priceInput.getText()+"' WHERE id = '"+serviceIDtxt.getText()+"' ");
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Successfully Updated");
@@ -317,10 +317,11 @@ public class ShopServices extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_updateBtnActionPerformed
-
+    /**
+     * This method allows the user to select a row and display its information respective to its field components.
+     * @param evt 
+     */
     private void servicesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_servicesTableMouseClicked
-            // TODO add your handling code here: 
-
         DefaultTableModel tm = (DefaultTableModel)servicesTable.getModel();
         i = servicesTable.getSelectedRow();
         serviceIDtxt.setText(tm.getValueAt(i, 0).toString());
@@ -329,8 +330,11 @@ public class ShopServices extends javax.swing.JFrame {
         priceInput.setText(tm.getValueAt(i, 3).toString());
     }//GEN-LAST:event_servicesTableMouseClicked
 
+    /**
+     * This method refreshes the displayed table by fetching the latest of its records.
+     * @param evt 
+     */
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        // TODO add your handling code here:
         try{
             con = DriverManager.getConnection(sqlPath, username, password);
             ps = con.prepareStatement("SELECT * FROM shop_services");
