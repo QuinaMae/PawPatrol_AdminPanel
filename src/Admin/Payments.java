@@ -29,7 +29,7 @@ public class Payments extends javax.swing.JFrame {
      */
     public Payments() {
         initComponents();
-        updateDB();
+        updatepaymentDB();
     }
 
     /**
@@ -232,7 +232,7 @@ public class Payments extends javax.swing.JFrame {
     
     int q, i, id, deleteItem;
     
-    public void updateDB(){
+    public void updatepaymentDB(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
@@ -295,7 +295,7 @@ public class Payments extends javax.swing.JFrame {
                 ps.executeUpdate();              
                 JOptionPane.showMessageDialog(this, "Successfully Updated");
                 con.close();
-                updateDB();
+                updatepaymentDB();
 
 
             }catch(ClassNotFoundException e){
