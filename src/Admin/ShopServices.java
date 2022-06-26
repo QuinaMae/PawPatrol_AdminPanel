@@ -299,7 +299,7 @@ public class ShopServices extends javax.swing.JFrame {
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         if (titleInput.getText().isEmpty() | descriptionInput.getText().isEmpty() | priceInput.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Missing Component!");
-        } else {
+        } else { 
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
