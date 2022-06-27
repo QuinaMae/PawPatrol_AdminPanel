@@ -266,7 +266,7 @@ public class Dashboard extends javax.swing.JFrame {
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
-                ps = con.prepareStatement("UPDATE appointments SET status = 'accepted'");
+                ps = con.prepareStatement("UPDATE appointments SET status = 'accepted' WHERE id = '"+showIdTextBox.getText()+"'");
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Successfully Updated");
                 con.close();
@@ -291,7 +291,7 @@ public class Dashboard extends javax.swing.JFrame {
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
-                ps = con.prepareStatement("UPDATE appointments SET status = 'declined'");
+                ps = con.prepareStatement("UPDATE appointments SET status = 'declined' WHERE id = '"+showIdTextBox.getText()+"'");
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Successfully Updated");
                 con.close();
