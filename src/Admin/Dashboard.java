@@ -61,16 +61,9 @@ public class Dashboard extends javax.swing.JFrame {
             while (rs.next()){
                 Vector columnData = new Vector();
                 for (i=1; i <= q; i++){
-//                    columnData.add(rs.getString("id"));
-//                    columnData.add(rs.getString("app_id"));
-//                    columnData.add(rs.getString("user_id"));
-//                    columnData.add(rs.getString("date_booked"));
-//                    columnData.add(rs.getString("date_updated"));
-//                    columnData.add(rs.getString("status"));
                     columnData.add(rs.getString("id"));
-                    columnData.add(rs.getString("user_id"));
+                    columnData.add(rs.getString("username"));
                     columnData.add(rs.getString("pet_name"));
-                    
                     columnData.add(rs.getString("pet_specie"));
                     columnData.add(rs.getString("pet_age"));
                     columnData.add(rs.getString("pet_gender"));
@@ -78,7 +71,6 @@ public class Dashboard extends javax.swing.JFrame {
                     columnData.add(rs.getString("date_booked"));
                     columnData.add(rs.getString("time_booked"));
                     columnData.add(rs.getString("status"));
-
                 }
                 RecordTable.addRow(columnData);
             }
@@ -101,6 +93,7 @@ public class Dashboard extends javax.swing.JFrame {
         shopServicesLabel = new javax.swing.JLabel();
         activitLogLabel = new javax.swing.JLabel();
         logOut = new javax.swing.JLabel();
+        activitLogLabel1 = new javax.swing.JLabel();
         acceptBtn = new javax.swing.JButton();
         declineBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -145,6 +138,14 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        activitLogLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        activitLogLabel1.setText("Payment Logs");
+        activitLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                activitLogLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -155,7 +156,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(appointmentsLabel)
                     .addComponent(shopServicesLabel)
                     .addComponent(logOut)
-                    .addComponent(activitLogLabel))
+                    .addComponent(activitLogLabel)
+                    .addComponent(activitLogLabel1))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,7 +169,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(shopServicesLabel)
                 .addGap(18, 18, 18)
                 .addComponent(activitLogLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 449, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(activitLogLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
                 .addComponent(logOut)
                 .addGap(17, 17, 17))
         );
@@ -191,7 +195,7 @@ public class Dashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "User ID", "Pet Name", "Specie", "Pet Gender", "Pet Age", "Service", "Date Booked", "Time Booked", "Status"
+                "ID", "Username", "Pet Name", "Specie", "Pet Gender", "Pet Age", "Service", "Date Booked", "Time Booked", "Status"
             }
         ));
         appointmentLog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,34 +222,34 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
-                        .addComponent(refreshButton)
-                        .addContainerGap(285, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(36, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(281, 281, 281)
-                                .addComponent(IDLabel)
-                                .addGap(27, 27, 27)
-                                .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(241, 241, 241)
+                                .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(IDLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53)
+                        .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(refreshButton)
+                        .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IDLabel))
-                .addGap(18, 18, 18)
+                    .addComponent(IDLabel)
+                    .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptBtn)
                     .addComponent(declineBtn)
@@ -338,20 +342,6 @@ public class Dashboard extends javax.swing.JFrame {
      */
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
 
-            //        try{
-//            con = DriverManager.getConnection(sqlPath, username, password);
-//            ps = con.prepareStatement("select * from appointments");
-//            rs = ps.executeQuery();
-//            DefaultTableModel tm = (DefaultTableModel)appointmentLog.getModel();
-//            tm.setRowCount(0);
-//            
-//            while(rs.next()){
-//                Object o[] = {rs.getInt("id"), rs.getString("app_id"), rs.getString("user_id"), rs.getDate("date_booked"), rs.getDate("date_updated"), rs.getString("status")};
-//                tm.addRow(o);
-//            }
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(this, e);
-//        }
         try {
             con.close();
             updateDB();
@@ -366,6 +356,13 @@ public class Dashboard extends javax.swing.JFrame {
         i = appointmentLog.getSelectedRow();
         showIdTextBox.setText(tm.getValueAt(i, 0).toString());
     }//GEN-LAST:event_appointmentLogMouseClicked
+
+    private void activitLogLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activitLogLabel1MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        Payments log = new Payments();
+        log.setVisible(true);
+    }//GEN-LAST:event_activitLogLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -406,6 +403,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel IDLabel;
     private javax.swing.JButton acceptBtn;
     private javax.swing.JLabel activitLogLabel;
+    private javax.swing.JLabel activitLogLabel1;
     private javax.swing.JTable appointmentLog;
     private javax.swing.JLabel appointmentsLabel;
     private javax.swing.JButton declineBtn;

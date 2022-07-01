@@ -55,6 +55,7 @@
                       <Component id="shopServicesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="activityLogLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="logOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="activityLogLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
@@ -69,7 +70,9 @@
                   <Component id="shopServicesLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="activityLogLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="activityLogLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="521" max="32767" attributes="0"/>
                   <Component id="logOut" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
@@ -118,6 +121,17 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logOutMouseClicked"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JLabel" name="activityLogLabel1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Payment Logs"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="activityLogLabel1MouseClicked"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
@@ -145,24 +159,24 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="160" width="879" height="300"/>
+              <AbsoluteConstraints x="20" y="160" width="879" height="230"/>
             </Constraint>
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="paymentsRecord">
+            <Component class="javax.swing.JTable" name="acceptedApptsTable">
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="0">
                     <Column editable="true" title="id" type="java.lang.Object"/>
-                    <Column editable="true" title="date_booked" type="java.lang.Object"/>
-                    <Column editable="true" title="time_booked" type="java.lang.Object"/>
-                    <Column editable="true" title="pet_name" type="java.lang.Object"/>
-                    <Column editable="true" title="client_name" type="java.lang.Object"/>
-                    <Column editable="true" title="mobile_no" type="java.lang.Object"/>
-                    <Column editable="true" title="service" type="java.lang.Object"/>
+                    <Column editable="true" title="Date Booked" type="java.lang.Object"/>
+                    <Column editable="true" title="Time Booked" type="java.lang.Object"/>
+                    <Column editable="true" title="Pet Name" type="java.lang.Object"/>
+                    <Column editable="true" title="Client" type="java.lang.Object"/>
+                    <Column editable="true" title="Mobile #" type="java.lang.Object"/>
+                    <Column editable="true" title="Service" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -204,7 +218,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="paymentsRecordMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="acceptedApptsTableMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -337,7 +351,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="470" width="879" height="220"/>
+              <AbsoluteConstraints x="20" y="430" width="879" height="250"/>
             </Constraint>
           </Constraints>
 
@@ -347,12 +361,11 @@
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="id" type="java.lang.Object"/>
+                  <Table columnCount="4" rowCount="0">
                     <Column editable="true" title="app_id" type="java.lang.Object"/>
-                    <Column editable="true" title="amount" type="java.lang.Object"/>
-                    <Column editable="true" title="status" type="java.lang.Object"/>
-                    <Column editable="true" title="date_paid" type="java.lang.Object"/>
+                    <Column editable="true" title="service" type="java.lang.Object"/>
+                    <Column editable="true" title="service_price" type="java.lang.Object"/>
+                    <Column editable="true" title="app_status" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -399,6 +412,56 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Accepted Appointments"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="140" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Payments"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="410" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="refreshBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="refresh"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshBtnActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="820" y="400" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="serviceTxt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Service"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="550" y="70" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="serviceInput">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="550" y="90" width="160" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

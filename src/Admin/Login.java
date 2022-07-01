@@ -129,7 +129,7 @@ public class Login extends javax.swing.JFrame {
             String password = passwordInput.getText();
             
             Statement st = con.createStatement();
-            String sql = "select * from user_profile where username='"+username+"' and passwd='"+password+"' and role='admin'";
+            String sql = "select * from user_profile where username='"+username+"' and pswd='"+password+"' and role='admin'";
             ResultSet rs = st.executeQuery(sql);
             
             if(rs.next()){

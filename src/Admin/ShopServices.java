@@ -82,6 +82,7 @@ public class ShopServices extends javax.swing.JFrame {
         shopServicesLabel = new javax.swing.JLabel();
         activityLogLabel = new javax.swing.JLabel();
         logOut = new javax.swing.JLabel();
+        activityLogLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         titleInput = new javax.swing.JTextField();
@@ -103,7 +104,6 @@ public class ShopServices extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         appointmentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         appointmentsLabel.setText("Appointments");
@@ -112,7 +112,6 @@ public class ShopServices extends javax.swing.JFrame {
                 appointmentsLabelMouseClicked(evt);
             }
         });
-        jPanel3.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
         shopServicesLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         shopServicesLabel.setText("Shop Services");
@@ -121,16 +120,14 @@ public class ShopServices extends javax.swing.JFrame {
                 shopServicesLabelMouseClicked(evt);
             }
         });
-        jPanel3.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 56, -1, -1));
 
         activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel.setText("Payments");
+        activityLogLabel.setText("Payment Logs");
         activityLogLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 activityLogLabelMouseClicked(evt);
             }
         });
-        jPanel3.add(activityLogLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 94, -1, -1));
 
         logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logOut.setText("Log Out");
@@ -139,7 +136,47 @@ public class ShopServices extends javax.swing.JFrame {
                 logOutMouseClicked(evt);
             }
         });
-        jPanel3.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 563, -1, -1));
+
+        activityLogLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        activityLogLabel1.setText("Payments");
+        activityLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                activityLogLabel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(appointmentsLabel)
+                            .addComponent(shopServicesLabel)
+                            .addComponent(activityLogLabel1)
+                            .addComponent(logOut)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(activityLogLabel)))
+                .addGap(10, 10, 10))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(appointmentsLabel)
+                .addGap(18, 18, 18)
+                .addComponent(shopServicesLabel)
+                .addGap(18, 18, 18)
+                .addComponent(activityLogLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(activityLogLabel)
+                .addGap(411, 411, 411)
+                .addComponent(logOut))
+        );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 600));
 
@@ -262,8 +299,8 @@ public class ShopServices extends javax.swing.JFrame {
 
     private void activityLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabelMouseClicked
         dispose();
-        Payments aLog = new Payments();
-        aLog.setVisible(true);
+        Payments log = new Payments();
+        log.setVisible(true);
     }//GEN-LAST:event_activityLogLabelMouseClicked
     
     /**
@@ -352,6 +389,10 @@ public class ShopServices extends javax.swing.JFrame {
         
     }//GEN-LAST:event_refreshBtnActionPerformed
 
+    private void activityLogLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_activityLogLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -389,6 +430,7 @@ public class ShopServices extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityLogLabel;
+    private javax.swing.JLabel activityLogLabel1;
     private javax.swing.JButton addBtn;
     private javax.swing.JLabel appointmentsLabel;
     private javax.swing.JButton clearBtn;

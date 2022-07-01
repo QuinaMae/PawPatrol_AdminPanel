@@ -50,10 +50,11 @@ public class Payments extends javax.swing.JFrame {
         shopServicesLabel = new javax.swing.JLabel();
         activityLogLabel = new javax.swing.JLabel();
         logOut = new javax.swing.JLabel();
+        activityLogLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        paymentsRecord = new javax.swing.JTable();
+        acceptedApptsTable = new javax.swing.JTable();
         exportBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         paymentID = new javax.swing.JLabel();
@@ -67,6 +68,11 @@ public class Payments extends javax.swing.JFrame {
         dateInput = new com.toedter.calendar.JDateChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         paymentsTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        refreshBtn = new javax.swing.JButton();
+        serviceTxt = new javax.swing.JLabel();
+        serviceInput = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +105,14 @@ public class Payments extends javax.swing.JFrame {
             }
         });
 
+        activityLogLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        activityLogLabel1.setText("Payment Logs");
+        activityLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                activityLogLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -109,7 +123,8 @@ public class Payments extends javax.swing.JFrame {
                     .addComponent(appointmentsLabel)
                     .addComponent(shopServicesLabel)
                     .addComponent(activityLogLabel)
-                    .addComponent(logOut))
+                    .addComponent(logOut)
+                    .addComponent(activityLogLabel1))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -121,7 +136,9 @@ public class Payments extends javax.swing.JFrame {
                 .addComponent(shopServicesLabel)
                 .addGap(18, 18, 18)
                 .addComponent(activityLogLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(activityLogLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 521, Short.MAX_VALUE)
                 .addComponent(logOut)
                 .addGap(17, 17, 17))
         );
@@ -132,23 +149,23 @@ public class Payments extends javax.swing.JFrame {
         jLabel9.setText("Payments");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 13, 373, -1));
 
-        paymentsRecord.setAutoCreateRowSorter(true);
-        paymentsRecord.setModel(new javax.swing.table.DefaultTableModel(
+        acceptedApptsTable.setAutoCreateRowSorter(true);
+        acceptedApptsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "date_booked", "time_booked", "pet_name", "client_name", "mobile_no", "service"
+                "id", "Date Booked", "Time Booked", "Pet Name", "Client", "Mobile #", "Service"
             }
         ));
-        paymentsRecord.addMouseListener(new java.awt.event.MouseAdapter() {
+        acceptedApptsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                paymentsRecordMouseClicked(evt);
+                acceptedApptsTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(paymentsRecord);
+        jScrollPane1.setViewportView(acceptedApptsTable);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 879, 300));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 879, 230));
 
         exportBtn.setText("Export ");
         exportBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,7 +217,7 @@ public class Payments extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "app_id", "amount", "status", "date_paid"
+                "app_id", "service", "service_price", "app_status"
             }
         ));
         paymentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,7 +227,25 @@ public class Payments extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(paymentsTable);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 879, 220));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 879, 250));
+
+        jLabel1.setText("Accepted Appointments");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel2.setText("Payments");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+
+        refreshBtn.setText("refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, -1, -1));
+
+        serviceTxt.setText("Service");
+        jPanel3.add(serviceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, -1, -1));
+        jPanel3.add(serviceInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,13 +277,40 @@ public class Payments extends javax.swing.JFrame {
     
     /**
      * This method builds a connection to the database and executes a prepared statement or SQL query.
+     * The data fetches from the payments database.
      */
     public void updatepaymentRecordDB(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("SELECT * FROM payments");
             
+//            ps = con.prepareStatement("SELECT * FROM payments");    
+//            rs = ps.executeQuery();
+//            ResultSetMetaData rsData = rs.getMetaData();
+//            
+//            q = rsData.getColumnCount();
+//            DefaultTableModel RT = (DefaultTableModel)paymentsTable.getModel();
+//            RT.setRowCount(0);
+//            
+//            while (rs.next()){
+//                Vector columnData = new Vector();
+//                for (i=1; i <= q; i++){
+//                    columnData.add(rs.getString("id"));
+//                    columnData.add(rs.getString("app_id"));
+//                    columnData.add(rs.getString("amount"));
+//                    columnData.add(rs.getString("status"));
+//                    columnData.add(rs.getString("date_paid"));
+//                }
+//                RT.addRow(columnData);
+//            }
+   /*
+FROM PAYMENTS1 DB
+*/          ps = con.prepareStatement("select app.id as 'app_id', app.service, serv.price as 'service_price', app.status as 'app_status'\n" +
+                                    "from appointments app\n" +
+                                    "join shop_services serv\n" +
+                                    "on app.service = serv.title\n" +
+                                    "where app.status='accepted'");
+            // app_id, service, service_price, app_status
             rs = ps.executeQuery();
             ResultSetMetaData rsData = rs.getMetaData();
             
@@ -259,11 +321,12 @@ public class Payments extends javax.swing.JFrame {
             while (rs.next()){
                 Vector columnData = new Vector();
                 for (i=1; i <= q; i++){
-                    columnData.add(rs.getString("id"));
+                    
                     columnData.add(rs.getString("app_id"));
-                    columnData.add(rs.getString("amount"));
-                    columnData.add(rs.getString("status"));
-                    columnData.add(rs.getString("date_paid"));
+//                    columnData.add(rs.getString("service_id"));
+                    columnData.add(rs.getString("service"));
+                    columnData.add(rs.getString("service_price"));
+                    columnData.add(rs.getString("app_status"));
                 }
                 RT.addRow(columnData);
             }
@@ -271,6 +334,9 @@ public class Payments extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    /**
+     * This method fetches data from the accepted_appointments_view database to identify accepted appointments.
+    */
     public void updatepaymentDB(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -281,7 +347,7 @@ public class Payments extends javax.swing.JFrame {
             ResultSetMetaData rsData = rs.getMetaData();
             
             q = rsData.getColumnCount();
-            DefaultTableModel RecordTable = (DefaultTableModel)paymentsRecord.getModel();
+            DefaultTableModel RecordTable = (DefaultTableModel)acceptedApptsTable.getModel();
             RecordTable.setRowCount(0);
             
             while (rs.next()){
@@ -332,16 +398,15 @@ public class Payments extends javax.swing.JFrame {
              try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(sqlPath, username, password);
-//                ps = con.prepareStatement("UPDATE payment SET status = '"+statusInput.getSelectedItem().toString()+"' WHERE id = "+idInput.getText()+" ");
-//                ps.executeUpdate();              
-                
 
-                ps = con.prepareStatement("INSERT INTO payments (app_id, amount, status, date_paid) VALUES (?,?,?,?)");
+                ps = con.prepareStatement("INSERT INTO `payments1` (`app_id`, `service`, `service_price`, `status`, `date_paid`) VALUES (?, ?, ?, ?, ?)");
                 ps.setString(1, idInput.getText());
-                ps.setString(2, amountInput.getText());
-                ps.setObject(3, statusInput.getSelectedItem());
-                ps.setString(4, ((JTextField)dateInput.getDateEditor().getUiComponent()).getText());
-                ps.executeUpdate();            
+                ps.setString(2, serviceInput.getText());
+                ps.setString(3, amountInput.getText());
+                ps.setObject(4, statusInput.getSelectedItem());
+                ps.setString(5, ((JTextField)dateInput.getDateEditor().getUiComponent()).getText());
+                ps.executeUpdate();
+                
                 JOptionPane.showMessageDialog(this, "Successfully Updated");
                 con.close();
                 updatepaymentDB();
@@ -363,15 +428,15 @@ public class Payments extends javax.swing.JFrame {
      * This method allows user to select a specific row in the table and displays it on its assigned text fields.
      * @param evt 
      */
-    private void paymentsRecordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsRecordMouseClicked
+    private void acceptedApptsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_acceptedApptsTableMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tm = (DefaultTableModel)paymentsRecord.getModel();
-        i = paymentsRecord.getSelectedRow();
+        DefaultTableModel tm = (DefaultTableModel)acceptedApptsTable.getModel();
+        i = acceptedApptsTable.getSelectedRow();
         idInput.setText(tm.getValueAt(i, 0).toString());
 //        dateInput.setString(5,((JTextField)dateInput.getDateEditor().getUiComponent()).getText());
 //        amountInput.setText(tm.getValueAt(i, 3).toString());
 //        statusInput.setSelectedItem(tm.getValueAt(i, 5).toString());
-    }//GEN-LAST:event_paymentsRecordMouseClicked
+    }//GEN-LAST:event_acceptedApptsTableMouseClicked
 
     /**
      * This method allows user to export the table record in a CSV file format.
@@ -416,8 +481,31 @@ public class Payments extends javax.swing.JFrame {
 
     private void paymentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsTableMouseClicked
         // TODO add your handling code here:
-        updatepaymentRecordDB();
+        DefaultTableModel tm = (DefaultTableModel)paymentsTable.getModel();
+        i = paymentsTable.getSelectedRow();
+        idInput.setText(tm.getValueAt(i, 0).toString());
+        serviceInput.setText(tm.getValueAt(i,1).toString());
+        amountInput.setText(tm.getValueAt(i, 2).toString());
     }//GEN-LAST:event_paymentsTableMouseClicked
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+            con.close();
+            updatepaymentRecordDB();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void activityLogLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabel1MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        Payments log = new Payments();
+        log.setVisible(true);
+    }//GEN-LAST:event_activityLogLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -456,7 +544,9 @@ public class Payments extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable acceptedApptsTable;
     private javax.swing.JLabel activityLogLabel;
+    private javax.swing.JLabel activityLogLabel1;
     private javax.swing.JLabel amount;
     private javax.swing.JTextField amountInput;
     private javax.swing.JLabel appID;
@@ -464,6 +554,8 @@ public class Payments extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateInput;
     private javax.swing.JButton exportBtn;
     private javax.swing.JTextField idInput;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -472,9 +564,11 @@ public class Payments extends javax.swing.JFrame {
     private javax.swing.JLabel logOut;
     private javax.swing.JLabel paydate;
     private javax.swing.JLabel paymentID;
-    private javax.swing.JTable paymentsRecord;
     private javax.swing.JTable paymentsTable;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField serviceInput;
+    private javax.swing.JLabel serviceTxt;
     private javax.swing.JLabel shopServicesLabel;
     private javax.swing.JLabel status;
     private javax.swing.JComboBox<String> statusInput;
