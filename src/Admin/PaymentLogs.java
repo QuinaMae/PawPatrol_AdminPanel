@@ -43,36 +43,46 @@ public class PaymentLogs extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         appointmentsLabel = new javax.swing.JLabel();
         shopServicesLabel = new javax.swing.JLabel();
-        activityLogLabel = new javax.swing.JLabel();
+        payments = new javax.swing.JLabel();
         logOut = new javax.swing.JLabel();
-        activityLogLabel1 = new javax.swing.JLabel();
+        paymentLogs = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         paymentsTable = new javax.swing.JTable();
         refreshBtn = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        appointmentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 appointmentsLabelMouseClicked(evt);
             }
         });
+        jPanel2.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
-        shopServicesLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 shopServicesLabelMouseClicked(evt);
             }
         });
+        jPanel2.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 58, -1, -1));
 
-        activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel.setText("Payments");
+        payments.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        payments.setText("Payments");
+        payments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paymentsMouseClicked(evt);
+            }
+        });
+        jPanel2.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 98, -1, -1));
 
         logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logOut.setText("Log Out");
@@ -81,48 +91,22 @@ public class PaymentLogs extends javax.swing.JFrame {
                 logOutMouseClicked(evt);
             }
         });
+        jPanel2.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 663, -1, -1));
 
-        activityLogLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel1.setText("Payment Logs");
-        activityLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        paymentLogs.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        paymentLogs.setText("Payment Logs");
+        paymentLogs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                activityLogLabel1MouseClicked(evt);
+                paymentLogsMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appointmentsLabel)
-                    .addComponent(shopServicesLabel)
-                    .addComponent(activityLogLabel)
-                    .addComponent(logOut)
-                    .addComponent(activityLogLabel1))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(appointmentsLabel)
-                .addGap(18, 18, 18)
-                .addComponent(shopServicesLabel)
-                .addGap(18, 18, 18)
-                .addComponent(activityLogLabel)
-                .addGap(18, 18, 18)
-                .addComponent(activityLogLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logOut)
-                .addGap(17, 17, 17))
-        );
+        jPanel2.add(paymentLogs, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 138, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paymentsTable.setAutoCreateRowSorter(true);
+        paymentsTable.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         paymentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,44 +122,30 @@ public class PaymentLogs extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(paymentsTable);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 830, 329));
+
+        refreshBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         refreshBtn.setText("refresh");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshBtn)
-                .addGap(67, 67, 67))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(refreshBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
-        );
+        jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
+        jLabel9.setText("PawPatrol ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 210, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +154,7 @@ public class PaymentLogs extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private static final String username = "root";
     private static final String password = "";
@@ -259,12 +230,19 @@ public class PaymentLogs extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_refreshBtnActionPerformed
 
-    private void activityLogLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabel1MouseClicked
+    private void paymentLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentLogsMouseClicked
         // TODO add your handling code here:
         dispose();
-        Payments log = new Payments();
+        PaymentLogs log = new PaymentLogs();
         log.setVisible(true);
-    }//GEN-LAST:event_activityLogLabel1MouseClicked
+    }//GEN-LAST:event_paymentLogsMouseClicked
+
+    private void paymentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        Payments pay = new Payments();
+        pay.setVisible(true);
+    }//GEN-LAST:event_paymentsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -302,13 +280,14 @@ public class PaymentLogs extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel activityLogLabel;
-    private javax.swing.JLabel activityLogLabel1;
     private javax.swing.JLabel appointmentsLabel;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logOut;
+    private javax.swing.JLabel paymentLogs;
+    private javax.swing.JLabel payments;
     private javax.swing.JTable paymentsTable;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JLabel shopServicesLabel;

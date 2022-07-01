@@ -94,6 +94,7 @@ public class Dashboard extends javax.swing.JFrame {
         activitLogLabel = new javax.swing.JLabel();
         logOut = new javax.swing.JLabel();
         activitLogLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         acceptBtn = new javax.swing.JButton();
         declineBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,12 +102,13 @@ public class Dashboard extends javax.swing.JFrame {
         refreshButton = new javax.swing.JButton();
         showIdTextBox = new javax.swing.JTextField();
         IDLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
-        appointmentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,7 +116,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        shopServicesLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,7 +124,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        activitLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        activitLogLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         activitLogLabel.setText("Payments");
         activitLogLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -130,7 +132,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logOut.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         logOut.setText("Log Out");
         logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,7 +140,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        activitLogLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        activitLogLabel1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         activitLogLabel1.setText("Payment Logs");
         activitLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -158,7 +160,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(logOut)
                     .addComponent(activitLogLabel)
                     .addComponent(activitLogLabel1))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,25 +173,33 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(activitLogLabel)
                 .addGap(18, 18, 18)
                 .addComponent(activitLogLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logOut)
                 .addGap(17, 17, 17))
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        acceptBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         acceptBtn.setText("Accept");
         acceptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acceptBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(acceptBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 125, -1));
 
+        declineBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         declineBtn.setText("Decline");
         declineBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 declineBtnActionPerformed(evt);
             }
         });
+        jPanel4.add(declineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 125, -1));
 
+        appointmentLog.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         appointmentLog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -205,14 +215,24 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(appointmentLog);
 
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 1120, 390));
+
         refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshButtonActionPerformed(evt);
             }
         });
+        jPanel4.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
+        jPanel4.add(showIdTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 110, 20));
 
+        IDLabel.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         IDLabel.setText("Appointment ID");
+        jPanel4.add(IDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
+        jLabel9.setText("PawPatrol ");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,43 +240,14 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(36, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(241, 241, 241)
-                                .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(IDLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(53, 53, 53)
-                        .addComponent(declineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refreshButton)
-                        .addGap(52, 52, 52))))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IDLabel)
-                    .addComponent(showIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptBtn)
-                    .addComponent(declineBtn)
-                    .addComponent(refreshButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -323,8 +314,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void activitLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activitLogLabelMouseClicked
         dispose();
-        Payments aLog = new Payments();
-        aLog.setVisible(true);
+        Payments pay = new Payments();
+        pay.setVisible(true);
     }//GEN-LAST:event_activitLogLabelMouseClicked
 
     private void logOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutMouseClicked
@@ -360,7 +351,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void activitLogLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activitLogLabel1MouseClicked
         // TODO add your handling code here:
         dispose();
-        Payments log = new Payments();
+        PaymentLogs log = new PaymentLogs();
         log.setVisible(true);
     }//GEN-LAST:event_activitLogLabel1MouseClicked
 
@@ -407,7 +398,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable appointmentLog;
     private javax.swing.JLabel appointmentsLabel;
     private javax.swing.JButton declineBtn;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logOut;
     private javax.swing.JButton refreshButton;

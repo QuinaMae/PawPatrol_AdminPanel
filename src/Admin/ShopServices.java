@@ -80,9 +80,9 @@ public class ShopServices extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         appointmentsLabel = new javax.swing.JLabel();
         shopServicesLabel = new javax.swing.JLabel();
-        activityLogLabel = new javax.swing.JLabel();
+        paymentLogs = new javax.swing.JLabel();
         logOut = new javax.swing.JLabel();
-        activityLogLabel1 = new javax.swing.JLabel();
+        payments = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         titleInput = new javax.swing.JTextField();
@@ -99,35 +99,40 @@ public class ShopServices extends javax.swing.JFrame {
         refreshBtn = new javax.swing.JButton();
         serviceID = new javax.swing.JLabel();
         serviceIDtxt = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        appointmentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 appointmentsLabelMouseClicked(evt);
             }
         });
+        jPanel3.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
-        shopServicesLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 shopServicesLabelMouseClicked(evt);
             }
         });
+        jPanel3.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 56, -1, -1));
 
-        activityLogLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel.setText("Payment Logs");
-        activityLogLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        paymentLogs.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        paymentLogs.setText("Payment Logs");
+        paymentLogs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                activityLogLabelMouseClicked(evt);
+                paymentLogsMouseClicked(evt);
             }
         });
+        jPanel3.add(paymentLogs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, -1));
 
         logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logOut.setText("Log Out");
@@ -136,65 +141,42 @@ public class ShopServices extends javax.swing.JFrame {
                 logOutMouseClicked(evt);
             }
         });
+        jPanel3.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 563, -1, -1));
 
-        activityLogLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        activityLogLabel1.setText("Payments");
-        activityLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        payments.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        payments.setText("Payments");
+        payments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                activityLogLabel1MouseClicked(evt);
+                paymentsMouseClicked(evt);
             }
         });
+        jPanel3.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 94, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appointmentsLabel)
-                            .addComponent(shopServicesLabel)
-                            .addComponent(activityLogLabel1)
-                            .addComponent(logOut)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(activityLogLabel)))
-                .addGap(10, 10, 10))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(appointmentsLabel)
-                .addGap(18, 18, 18)
-                .addComponent(shopServicesLabel)
-                .addGap(18, 18, 18)
-                .addComponent(activityLogLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(activityLogLabel)
-                .addGap(411, 411, 411)
-                .addComponent(logOut))
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 600));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 700));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        titleLabel.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         titleLabel.setText("Title");
-        jPanel4.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
-        jPanel4.add(titleInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 247, -1));
+        jPanel4.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
+        titleInput.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jPanel4.add(titleInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 247, -1));
+
+        descriptionLabel.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         descriptionLabel.setText("Description");
-        jPanel4.add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 77, -1, -1));
+        jPanel4.add(descriptionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
+        priceLabel.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         priceLabel.setText("Price");
-        jPanel4.add(priceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 26, 32, -1));
-        jPanel4.add(priceInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 23, 83, -1));
+        jPanel4.add(priceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 32, -1));
+
+        priceInput.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jPanel4.add(priceInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 83, -1));
 
         servicesTable.setAutoCreateRowSorter(true);
+        servicesTable.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         servicesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -210,53 +192,64 @@ public class ShopServices extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(servicesTable);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 211, 816, 371));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 1030, 360));
 
+        addBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         addBtn.setText("ADD");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+        jPanel4.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         updateBtn.setText("UPDATE");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
+        jPanel4.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, -1, -1));
 
+        clearBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         clearBtn.setText("CLEAR");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 171, -1, -1));
+        jPanel4.add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, -1, -1));
 
         descriptionInput.setColumns(20);
+        descriptionInput.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         descriptionInput.setRows(5);
         jScrollPane2.setViewportView(descriptionInput);
 
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 73, 640, -1));
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 940, 100));
 
+        refreshBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         refreshBtn.setText("Refresh");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 171, -1, -1));
+        jPanel4.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 280, -1, -1));
 
+        serviceID.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         serviceID.setText("ID");
-        jPanel4.add(serviceID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        jPanel4.add(serviceID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         serviceIDtxt.setEditable(false);
-        jPanel4.add(serviceIDtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 70, -1));
+        serviceIDtxt.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jPanel4.add(serviceIDtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 70, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 890, 600));
+        jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
+        jLabel9.setText("PawPatrol ");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 210, -1));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 1070, 700));
 
         pack();
         setLocationRelativeTo(null);
@@ -297,11 +290,11 @@ public class ShopServices extends javax.swing.JFrame {
         shopServices.setVisible(true);
     }//GEN-LAST:event_shopServicesLabelMouseClicked
 
-    private void activityLogLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabelMouseClicked
+    private void paymentLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentLogsMouseClicked
         dispose();
-        Payments log = new Payments();
+        PaymentLogs log = new PaymentLogs();
         log.setVisible(true);
-    }//GEN-LAST:event_activityLogLabelMouseClicked
+    }//GEN-LAST:event_paymentLogsMouseClicked
     
     /**
      * This method performs an insert query towards a specified table.
@@ -389,9 +382,12 @@ public class ShopServices extends javax.swing.JFrame {
         
     }//GEN-LAST:event_refreshBtnActionPerformed
 
-    private void activityLogLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityLogLabel1MouseClicked
+    private void paymentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paymentsMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_activityLogLabel1MouseClicked
+        dispose();
+        Payments pay = new Payments();
+        pay.setVisible(true);
+    }//GEN-LAST:event_paymentsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -429,18 +425,19 @@ public class ShopServices extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel activityLogLabel;
-    private javax.swing.JLabel activityLogLabel1;
     private javax.swing.JButton addBtn;
     private javax.swing.JLabel appointmentsLabel;
     private javax.swing.JButton clearBtn;
     private javax.swing.JTextArea descriptionInput;
     private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logOut;
+    private javax.swing.JLabel paymentLogs;
+    private javax.swing.JLabel payments;
     private javax.swing.JTextField priceInput;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JButton refreshBtn;
