@@ -49,7 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("select * from appointments");
+            ps = con.prepareStatement("select * from appointments where status='pending'");
             
             rs = ps.executeQuery();
             ResultSetMetaData rsData = rs.getMetaData();
@@ -71,6 +71,7 @@ public class Dashboard extends javax.swing.JFrame {
                     columnData.add(rs.getString("date_booked"));
                     columnData.add(rs.getString("time_booked"));
                     columnData.add(rs.getString("status"));
+                    
                 }
                 RecordTable.addRow(columnData);
             }
@@ -332,7 +333,7 @@ public class Dashboard extends javax.swing.JFrame {
      * This method performs a prepared statement to fetch the latest records from a specific table given the schema.
      */
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-
+   
         try {
             con.close();
             updateDB();
@@ -343,7 +344,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void appointmentLogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_appointmentLogMouseClicked
-         DefaultTableModel tm = (DefaultTableModel)appointmentLog.getModel();
+        DefaultTableModel tm = (DefaultTableModel)appointmentLog.getModel();
         i = appointmentLog.getSelectedRow();
         showIdTextBox.setText(tm.getValueAt(i, 0).toString());
     }//GEN-LAST:event_appointmentLogMouseClicked

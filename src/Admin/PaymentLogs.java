@@ -122,7 +122,7 @@ public class PaymentLogs extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(paymentsTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 830, 329));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, 830, 560));
 
         refreshBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         refreshBtn.setText("refresh");
@@ -131,7 +131,7 @@ public class PaymentLogs extends javax.swing.JFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, -1, -1));
+        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
         jLabel9.setText("PawPatrol ");
