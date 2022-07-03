@@ -56,7 +56,6 @@ public class Payments extends javax.swing.JFrame {
         logOut = new javax.swing.JLabel();
         paymentLogs = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        exportBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         paymentID = new javax.swing.JLabel();
         idInput = new javax.swing.JTextField();
@@ -77,10 +76,11 @@ public class Payments extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(9, 64, 103));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        appointmentsLabel.setForeground(new java.awt.Color(255, 255, 254));
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,7 +89,8 @@ public class Payments extends javax.swing.JFrame {
         });
         jPanel2.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
-        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        shopServicesLabel.setForeground(new java.awt.Color(255, 255, 254));
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -98,7 +99,8 @@ public class Payments extends javax.swing.JFrame {
         });
         jPanel2.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 56, -1, -1));
 
-        payments.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        payments.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        payments.setForeground(new java.awt.Color(255, 255, 254));
         payments.setText("Payments");
         payments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -107,16 +109,18 @@ public class Payments extends javax.swing.JFrame {
         });
         jPanel2.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 94, -1, -1));
 
-        logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logOut.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        logOut.setForeground(new java.awt.Color(255, 255, 254));
         logOut.setText("Log Out");
         logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logOutMouseClicked(evt);
             }
         });
-        jPanel2.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 673, -1, -1));
+        jPanel2.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, -1));
 
-        paymentLogs.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        paymentLogs.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        paymentLogs.setForeground(new java.awt.Color(255, 255, 254));
         paymentLogs.setText("Payment Logs");
         paymentLogs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,15 +132,6 @@ public class Payments extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        exportBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        exportBtn.setText("Export ");
-        exportBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exportBtnMouseClicked(evt);
-            }
-        });
-        jPanel3.add(exportBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 110, -1, -1));
-
         saveBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +139,7 @@ public class Payments extends javax.swing.JFrame {
                 saveBtnActionPerformed(evt);
             }
         });
-        jPanel3.add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 110, -1, -1));
+        jPanel3.add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
 
         paymentID.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         paymentID.setText("App ID");
@@ -207,7 +202,7 @@ public class Payments extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(paymentsTable);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 1050, 280));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 1050, 440));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel2.setText("Pending Payments");
@@ -226,10 +221,10 @@ public class Payments extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,46 +410,6 @@ public class Payments extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
-     * This method allows user to export the table record in a CSV file format.
-     * @param evt 
-     */
-    private void exportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportBtnMouseClicked
-
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(sqlPath, username, password);
-
-            PrintWriter pw = new PrintWriter (new File("C:/csv/Payment_Table.csv"));
-            StringBuilder sb = new StringBuilder();
-
-            String query = "SELECT * from payment";
-            ResultSet rs = null;
-            rs = ps.executeQuery();
-
-            while (rs.next()){
-                sb.append(rs.getString("id"));
-                sb.append(",");
-                sb.append(rs.getString("app_id"));
-                sb.append(",");
-                sb.append(rs.getString("amount"));
-                sb.append(",");
-                sb.append(rs.getString("status"));
-                sb.append(",");
-                sb.append(rs.getDate("pay_date")); //changed getString to getDate
-                sb.append("\r\n");
-            }
-
-            pw.write(sb.toString());
-            pw.close();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        JOptionPane.showMessageDialog(this, "Successfully Exported");
-    }//GEN-LAST:event_exportBtnMouseClicked
-
-    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -496,7 +451,6 @@ public class Payments extends javax.swing.JFrame {
     private javax.swing.JLabel appID;
     private javax.swing.JLabel appointmentsLabel;
     private com.toedter.calendar.JDateChooser dateInput;
-    private javax.swing.JButton exportBtn;
     private javax.swing.JTextField idInput;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;

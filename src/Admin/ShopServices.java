@@ -104,10 +104,11 @@ public class ShopServices extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(9, 64, 103));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        appointmentsLabel.setForeground(new java.awt.Color(255, 255, 254));
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -116,7 +117,8 @@ public class ShopServices extends javax.swing.JFrame {
         });
         jPanel3.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
-        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        shopServicesLabel.setForeground(new java.awt.Color(255, 255, 254));
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,25 +127,28 @@ public class ShopServices extends javax.swing.JFrame {
         });
         jPanel3.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 56, -1, -1));
 
-        paymentLogs.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        paymentLogs.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        paymentLogs.setForeground(new java.awt.Color(255, 255, 254));
         paymentLogs.setText("Payment Logs");
         paymentLogs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 paymentLogsMouseClicked(evt);
             }
         });
-        jPanel3.add(paymentLogs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, -1));
+        jPanel3.add(paymentLogs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logOut.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        logOut.setForeground(new java.awt.Color(255, 255, 254));
         logOut.setText("Log Out");
         logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logOutMouseClicked(evt);
             }
         });
-        jPanel3.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 563, -1, -1));
+        jPanel3.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, -1));
 
-        payments.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        payments.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        payments.setForeground(new java.awt.Color(255, 255, 254));
         payments.setText("Payments");
         payments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

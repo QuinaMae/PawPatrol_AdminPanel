@@ -107,9 +107,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(9, 64, 103));
 
-        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        appointmentsLabel.setForeground(new java.awt.Color(255, 255, 254));
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -117,7 +118,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        shopServicesLabel.setForeground(new java.awt.Color(255, 255, 254));
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,7 +127,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        activitLogLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        activitLogLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        activitLogLabel.setForeground(new java.awt.Color(255, 255, 254));
         activitLogLabel.setText("Payments");
         activitLogLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,7 +136,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        logOut.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        logOut.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        logOut.setForeground(new java.awt.Color(255, 255, 254));
         logOut.setText("Log Out");
         logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,7 +145,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        activitLogLabel1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        activitLogLabel1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        activitLogLabel1.setForeground(new java.awt.Color(255, 255, 254));
         activitLogLabel1.setText("Payment Logs");
         activitLogLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -241,7 +246,7 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );

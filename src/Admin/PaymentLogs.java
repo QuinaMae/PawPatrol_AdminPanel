@@ -4,6 +4,8 @@
  */
 package Admin;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -51,13 +53,15 @@ public class PaymentLogs extends javax.swing.JFrame {
         paymentsTable = new javax.swing.JTable();
         refreshBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        exportBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(9, 64, 103));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        appointmentsLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        appointmentsLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        appointmentsLabel.setForeground(new java.awt.Color(255, 255, 254));
         appointmentsLabel.setText("Appointments");
         appointmentsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -66,7 +70,8 @@ public class PaymentLogs extends javax.swing.JFrame {
         });
         jPanel2.add(appointmentsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, -1, -1));
 
-        shopServicesLabel.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        shopServicesLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        shopServicesLabel.setForeground(new java.awt.Color(255, 255, 254));
         shopServicesLabel.setText("Shop Services");
         shopServicesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,7 +80,8 @@ public class PaymentLogs extends javax.swing.JFrame {
         });
         jPanel2.add(shopServicesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 58, -1, -1));
 
-        payments.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        payments.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        payments.setForeground(new java.awt.Color(255, 255, 254));
         payments.setText("Payments");
         payments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -84,16 +90,18 @@ public class PaymentLogs extends javax.swing.JFrame {
         });
         jPanel2.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 98, -1, -1));
 
-        logOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logOut.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        logOut.setForeground(new java.awt.Color(255, 255, 254));
         logOut.setText("Log Out");
         logOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logOutMouseClicked(evt);
             }
         });
-        jPanel2.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 663, -1, -1));
+        jPanel2.add(logOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, -1, -1));
 
-        paymentLogs.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        paymentLogs.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        paymentLogs.setForeground(new java.awt.Color(255, 255, 254));
         paymentLogs.setText("Payment Logs");
         paymentLogs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,7 +130,7 @@ public class PaymentLogs extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(paymentsTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, 830, 560));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, 830, 550));
 
         refreshBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         refreshBtn.setText("refresh");
@@ -131,20 +139,29 @@ public class PaymentLogs extends javax.swing.JFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, -1, -1));
+        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
         jLabel9.setText("PawPatrol ");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 210, -1));
+
+        exportBtn.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        exportBtn.setText("Export ");
+        exportBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exportBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -244,6 +261,44 @@ public class PaymentLogs extends javax.swing.JFrame {
         pay.setVisible(true);
     }//GEN-LAST:event_paymentsMouseClicked
 
+    private void exportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportBtnMouseClicked
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(sqlPath, username, password);
+
+            PrintWriter pw = new PrintWriter (new File("C:/csv/Payment_Table.csv"));
+            StringBuilder sb = new StringBuilder();
+
+            String query = "SELECT * from payments1";
+            ResultSet rs = null;
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                sb.append(rs.getString("id"));
+                sb.append(",");
+                sb.append(rs.getString("app_id"));
+                sb.append(",");
+                sb.append(rs.getString("service"));
+                sb.append(",");
+                sb.append(rs.getString("service_price"));
+                sb.append(",");
+                sb.append(rs.getString("status"));
+                sb.append(",");
+                sb.append(rs.getDate("date_paid")); 
+                sb.append("\r\n");
+            }
+
+            pw.write(sb.toString());
+            pw.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        JOptionPane.showMessageDialog(this, "Successfully Exported");
+    }//GEN-LAST:event_exportBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -281,6 +336,7 @@ public class PaymentLogs extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appointmentsLabel;
+    private javax.swing.JButton exportBtn;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
