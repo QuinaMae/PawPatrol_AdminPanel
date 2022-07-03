@@ -46,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(51, 0, 255));
 
         loginLabel.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
         loginLabel.setText("LOG IN");

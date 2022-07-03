@@ -161,7 +161,7 @@ public class Payments extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
         jLabel9.setText("PawPatrol ");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 240, -1));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 240, -1));
 
         dateInput.setDateFormatString("yyyy-MM-dd");
         jPanel3.add(dateInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 130, -1));
@@ -508,7 +508,7 @@ public class Payments extends javax.swing.JFrame {
     private javax.swing.JLabel paymentID;
     private javax.swing.JLabel paymentLogs;
     private javax.swing.JLabel payments;
-    private javax.swing.JTable paymentsTable;
+    public javax.swing.JTable paymentsTable;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JButton saveBtn;
     private javax.swing.JTextField serviceInput;

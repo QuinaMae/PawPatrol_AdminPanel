@@ -247,7 +247,7 @@ public class ShopServices extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
         jLabel9.setText("PawPatrol ");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 210, -1));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 210, -1));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 1070, 700));
 

@@ -135,7 +135,7 @@ public class PaymentLogs extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
         jLabel9.setText("PawPatrol ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 210, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 210, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

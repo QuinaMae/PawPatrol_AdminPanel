@@ -49,7 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("select * from appointments where status='pending'");
+            ps = con.prepareStatement("select * from appointments where status='accepted'");
             
             rs = ps.executeQuery();
             ResultSetMetaData rsData = rs.getMetaData();
@@ -224,7 +224,7 @@ public class Dashboard extends javax.swing.JFrame {
                 refreshButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
+        jPanel4.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 110, -1, -1));
         jPanel4.add(showIdTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 110, 20));
 
         IDLabel.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -233,7 +233,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
         jLabel9.setText("PawPatrol ");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 230, -1));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
