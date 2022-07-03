@@ -49,7 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            ps = con.prepareStatement("select * from appointments where status='accepted'");
+            ps = con.prepareStatement("select * from appointments where status='pending'");
             
             rs = ps.executeQuery();
             ResultSetMetaData rsData = rs.getMetaData();
