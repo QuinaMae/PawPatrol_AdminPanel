@@ -4,8 +4,11 @@
  */
 package Admin;
 
+
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,6 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -263,17 +269,17 @@ public class PaymentLogs extends javax.swing.JFrame {
 
     private void exportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportBtnMouseClicked
 
+        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-
-            PrintWriter pw = new PrintWriter (new File("C:/csv/Payment_Table.csv"));
             StringBuilder sb = new StringBuilder();
-
+            
             String query = "SELECT * from payments1";
             ResultSet rs = null;
             rs = ps.executeQuery();
-
+            
+            
             while (rs.next()){
                 sb.append(rs.getString("id"));
                 sb.append(",");
@@ -288,10 +294,35 @@ public class PaymentLogs extends javax.swing.JFrame {
                 sb.append(rs.getDate("date_paid")); 
                 sb.append("\r\n");
             }
-
-            pw.write(sb.toString());
-            pw.close();
-
+            
+            JFileChooser fileChooser = new JFileChooser();
+            
+            FileFilter filter = new FileNameExtensionFilter("CSV File", "csv");fileChooser.addChoosableFileFilter(filter);fileChooser.setFileFilter(filter);
+          
+            int returnVal = fileChooser.showSaveDialog(null);
+            
+            if (returnVal == fileChooser.APPROVE_OPTION) {
+            
+            File outputFile = fileChooser.getSelectedFile();
+         
+            if (!outputFile.getAbsolutePath().toLowerCase().endsWith(".csv")) {
+              outputFile = new File(outputFile.getAbsolutePath() + ".csv");
+            }
+            try {
+            
+            FileOutputStream fout = new FileOutputStream(outputFile);
+            fout.write(sb.toString().getBytes());
+            fout.close();
+          } catch (FileNotFoundException e) {
+            
+            e.printStackTrace();
+            return;
+          } catch (IOException e) {
+            
+            e.printStackTrace();
+            return;
+          }
+               }
         } catch (Exception e){
             e.printStackTrace();
         }
