@@ -269,7 +269,6 @@ public class PaymentLogs extends javax.swing.JFrame {
 
     private void exportBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportBtnMouseClicked
 
-        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
