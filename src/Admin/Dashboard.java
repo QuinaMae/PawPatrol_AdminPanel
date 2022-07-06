@@ -71,6 +71,7 @@ public class Dashboard extends javax.swing.JFrame {
                     columnData.add(rs.getString("date_booked"));
                     columnData.add(rs.getString("time_booked"));
                     columnData.add(rs.getString("status"));
+                    columnData.add(rs.getString("is_updated"));
                     
                 }
                 RecordTable.addRow(columnData);

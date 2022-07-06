@@ -253,11 +253,6 @@ public class Payments extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-//            ps = con.prepareStatement("select app.id as 'app_id', app.service, serv.price as 'service_price', app.status as 'app_status' from appointments1 app join shop_services serv on app.service = serv.title where app.status='accepted' AND pay_stat='pending'");
-            // app_id, service, service_price, app_status
-//            ps = con.prepareStatement("select app.id as 'app_id', app.service, serv.price, app.status, app.pay_stat from appointments1 app join shop_services serv on app.service = serv.title where app.status='accepted' AND pay_stat='pending'");
-            // id, service, price, status, pay_stat
-            
             ps = con.prepareStatement("SELECT * FROM `pending_invoice_view`");
             // app_id, username, pet_name, service, price, status, invoice_stat
             
@@ -285,39 +280,14 @@ public class Payments extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    /**
-     * This method fetches data from the accepted_appointments_view database to identify accepted appointments.
-    */
-//    public void updatepaymentDB(){
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection(sqlPath, username, password);
-//            ps = con.prepareStatement("SELECT * FROM accepted_appointments_view");
-//            
-//            rs = ps.executeQuery();
-//            ResultSetMetaData rsData = rs.getMetaData();
-//            
-//            q = rsData.getColumnCount();
-//            DefaultTableModel RecordTable = (DefaultTableModel)acceptedApptsTable.getModel();
-//            RecordTable.setRowCount(0);
-//            
-//            while (rs.next()){
-//                Vector columnData = new Vector();
-//                for (i=1; i <= q; i++){
-//                    columnData.add(rs.getString("app_id"));
-//                    columnData.add(rs.getString("client_name"));
-//                    columnData.add(rs.getString("date_booked"));
-//                    columnData.add(rs.getString("time_booked"));
-//                    columnData.add(rs.getString("pet_name"));
-//                    columnData.add(rs.getString("mobile_no"));
-////                    columnData.add(rs.getString("service"));
-//                }
-//                RecordTable.addRow(columnData);
-//            }
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
-//        } 
-//    }
+    
+    public void clear(){
+        idInput.setText("");
+        serviceInput.setText("");
+        amountInput.setText("");
+        dateInput.setCalendar(null);
+        statusInput.setSelectedIndex(0);
+    }
 
     private void shopServicesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopServicesLabelMouseClicked
         dispose();
@@ -388,20 +358,35 @@ public class Payments extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(sqlPath, username, password);
-            //                ps = con.prepareStatement("UPDATE appointments1 SET pay_stat='"+Arrays.toString(statusInput.getSelectedObjects())+"' where id = '"+idInput.getText().toString()+"'");
-            ps = con.prepareStatement("INSERT INTO `payments1` (`app_id`, `service`, `service_price`, `status`, `date_paid`) VALUES (?, ?, ?, ?, ?)");
-            ps.setString(1, idInput.getText());
-            ps.setString(2, serviceInput.getText());
-            ps.setString(3, amountInput.getText());
-            ps.setObject(4, statusInput.getSelectedItem());
-            ps.setString(5, ((JTextField)dateInput.getDateEditor().getUiComponent()).getText());
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(this, "Successfully Updated");
-            con.close();
-            //                updatepaymentDB();
-            updatepaymentRecordDB();
+            try{
+                
+                ps = con.prepareStatement("INSERT INTO `payments1` (`app_id`, `service`, `service_price`, `status`, `date_paid`) VALUES (?, ?, ?, ?, ?)");
+                ps.setString(1, idInput.getText());
+                ps.setString(2, serviceInput.getText());
+                ps.setString(3, amountInput.getText());
+                ps.setObject(4, statusInput.getSelectedItem());
+                ps.setString(5, ((JTextField)dateInput.getDateEditor().getUiComponent()).getText());
+                ps.executeUpdate();
 
+                JOptionPane.showMessageDialog(this, "Successfully Updated");
+                con.close();
+                updatepaymentRecordDB();
+                
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+            try{
+                ps = con.prepareStatement("UPDATE `appointments` SET `is_updated` = '1' WHERE `appointments`.`id` = '"+idInput.getText()+"'");
+                ps.executeUpdate();
+                con.close();
+                updatepaymentRecordDB();
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            clear();
+            
         }catch(ClassNotFoundException e){
             java.util.logging.Logger.getLogger(ShopServices.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
         }catch(SQLException e){
