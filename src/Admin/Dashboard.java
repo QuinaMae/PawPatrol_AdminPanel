@@ -221,7 +221,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(appointmentLog);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 1120, 390));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 1120, 380));
 
         refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +230,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         jPanel4.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 110, -1, -1));
+
+        showIdTextBox.setEditable(false);
         jPanel4.add(showIdTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 110, 20));
 
         IDLabel.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
